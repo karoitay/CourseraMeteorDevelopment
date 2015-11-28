@@ -1,0 +1,35 @@
+<head>
+  <title>siteace</title>
+</head>
+
+<body>
+</body>
+
+<template name="siteLayout">
+	{{> navbar}}
+	<div class="container">
+		{{> yield}}
+	</div>	
+</template>
+
+<template name="mainPage">
+	{{> website_form}}
+	{{> website_list}}
+</template>
+
+<template name="siteDetails">
+	{{#if this}}
+		{{#unless currentUser}}
+			<h4 class="alert alert-info sign-in-alert">Signing-in will allow you to add comments</h4>
+		{{/unless}}
+		<div class="well well-lg">
+			<h1><a href="{{url}}" target="_blank">{{title}}</a></h1>
+			<p>{{description}}</p>
+		</div>
+		{{> site_comments}}
+	{{else}}
+		<div class="jumbotron">
+			<h1>404: Site not found</h1>
+		</div>
+	{{/if}}
+</template>

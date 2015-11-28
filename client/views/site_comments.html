@@ -1,0 +1,33 @@
+<template name="site_comments">
+	<div class="well">
+		<p>
+			<h2 class="text-primary">
+				Comments
+				{{#if currentUser}}
+					<a class="btn btn-default js-toggle-comment-form" href="#">
+			  			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+					</a>
+				{{/if}}
+			</h2>
+		</p>
+		{{#if currentUser}}
+			<div id="comment_form" class="hidden_div">
+				<form>
+					<div class="input-group">
+						<textarea
+							id="commentTextArea"
+							class="js-comment-textarea form-control custom-control"
+							placeholder="Enter a comment"
+							rows="3"
+							style="resize:none"></textarea>
+							<span class="js-comment-submit-button input-group-addon btn btn-default disabled">Submit</span>
+					</div>
+				</form>
+			</div>
+		{{/if}}
+		{{#each comments}}
+			<hr />
+			{{> comment_item}}
+		{{/each}}
+	</div>
+</template>
