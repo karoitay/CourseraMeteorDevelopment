@@ -1,17 +1,17 @@
 <template name="site_comments">
-	<div class="well">
-		<p>
-			<h2 class="text-primary">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			{{#if currentUser}}
+				<a class="btn btn-default js-toggle-comment-form" href="#">
+		  			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+		  			Add comment
+				</a>
+			{{else}}
 				Comments
-				{{#if currentUser}}
-					<a class="btn btn-default js-toggle-comment-form" href="#">
-			  			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-					</a>
-				{{/if}}
-			</h2>
-		</p>
+			{{/if}}
+		</div>
 		{{#if currentUser}}
-			<div id="comment_form" class="hidden_div">
+			<div id="comment_form" class="panel-body hidden_div">
 				<form>
 					<div class="input-group">
 						<textarea
@@ -25,9 +25,10 @@
 				</form>
 			</div>
 		{{/if}}
-		{{#each comments}}
-			<hr />
-			{{> comment_item}}
-		{{/each}}
+		<ul class="list-group">
+			{{#each comments}}
+				<li class="list-group-item">{{> comment_item}}</li>
+			{{/each}}
+		</ul>
 	</div>
 </template>
