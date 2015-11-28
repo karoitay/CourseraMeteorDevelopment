@@ -16,7 +16,7 @@ Template.website_form.events({
 		var description = event.target.description.value;
 
 		if (!isValid("url", url) || !isValid("description", description)) {
-			return;
+			return false;
 		}
 
 		var site = {
