@@ -4,6 +4,9 @@ Template.website_item.helpers({
 	},
 	downvote_btn_class: function(userId) {
 		return userId && _.contains(this.down, userId) ? "btn-success" : "btn-default";
+	},
+	commentCount: function() {
+		return Comments.find({site_id: this._id}).count();
 	}
 });
 Template.website_item.events({

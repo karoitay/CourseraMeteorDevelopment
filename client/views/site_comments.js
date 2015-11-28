@@ -1,6 +1,6 @@
 Template.site_comments.helpers({
 	comments: function() {
-		return Comments.find({}, {sort: {createdOn: -1}});
+		return Comments.find({site_id: this._id}, {sort: {createdOn: -1}});
 	}
 });
 

@@ -1,8 +1,9 @@
 <template name="website_item">
-	<li>
+	<li class="list-group-item">
 		<a href="{{url}}" target="_blank">{{title}}</a> <small>{{createdOn}}</small>
 		<p>{{description}}</p>
 
+		<p>
 		<a href="#" class="btn js-upvote {{upvote_btn_class currentUser._id}}" disabled="{{#unless currentUser}}true{{/unless}}">
 			{{#if up_votes}}{{up_votes}}{{else}}0{{/if}}
 			<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
@@ -11,6 +12,9 @@
 			{{#if down_votes}}{{down_votes}}{{else}}0{{/if}}
 			<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
 		</a>
-		<a href="/site/{{_id}}" class="btn btn-primary">Details</a>
+		</p>
+		<a href="/site/{{_id}}" class="btn btn-primary">
+		Details <span class="badge">{{commentCount}} comments</span>
+		</a>
 	</li>
 </template>

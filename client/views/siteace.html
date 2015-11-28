@@ -13,14 +13,19 @@
 </template>
 
 <template name="mainPage">
-	{{> website_form}}
-	{{> website_list}}
+	{{#unless currentUser}}
+		<h4 class="alert alert-info">Sign in to add sites</h4>
+	{{/unless}}
+	<div class="panel panel-default">
+		{{> website_form}}
+		{{> website_list}}
+	</div>
 </template>
 
 <template name="siteDetails">
 	{{#if this}}
 		{{#unless currentUser}}
-			<h4 class="alert alert-info sign-in-alert">Sign in to add comments</h4>
+			<h4 class="alert alert-info">Sign in to add comments</h4>
 		{{/unless}}
 		<div class="well well-lg">
 			<h1><a href="{{url}}" target="_blank">{{title}}</a></h1>

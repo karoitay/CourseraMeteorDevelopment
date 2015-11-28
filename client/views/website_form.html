@@ -1,9 +1,16 @@
 <template name="website_form">
+	<div class="panel-heading">
+		{{#if currentUser}}
+			<a class="btn btn-default js-toggle-website-form" href="#">
+		  		<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+		  		Add site
+			</a>
+		{{else}}
+			Sites
+		{{/if}}
+	</div>
 	{{#if currentUser}}
-		<a class="btn btn-default js-toggle-website-form" href="#">
-	  		<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-		</a>
-		<div id="website_form" class="hidden_div">
+		<div id="website_form" class="panel-body hidden_div">
 			<form class="js-save-website-form">
 			  <div class="form-group">
 			    <label for="url">Site address</label>
@@ -21,7 +28,5 @@
 			  <button type="submit" class="btn btn-default">Submit</button>
 			</form>
 		</div>
-	{{else}}
-		<h4 class="alert alert-info sign-in-alert">Signing-in will allow you to add sites and vote</h4>
 	{{/if}}
 </template>
