@@ -3,18 +3,22 @@
 		<a href="{{url}}" target="_blank">{{title}}</a> <small>{{createdOn}}</small>
 		<p>{{description}}</p>
 
-		<p>
-		<a href="#" class="btn js-upvote {{upvote_btn_class currentUser._id}}" disabled="{{#unless currentUser}}true{{/unless}}">
-			{{#if up_votes}}{{up_votes}}{{else}}0{{/if}}
-			<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
-		</a>
-		<a href="#" class="btn js-downvote {{downvote_btn_class currentUser._id}}" disabled="{{#unless currentUser}}true{{/unless}}">
-			{{#if down_votes}}{{down_votes}}{{else}}0{{/if}}
-			<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
-		</a>
-		</p>
-		<a href="/site/{{_id}}" class="">
-		Comments <span class="badge">{{commentCount}}</span>
-		</a>
+		{{#if isActivePath '/'}}
+			<p>
+				<a href="#" class="btn js-upvote {{upvote_btn_class currentUser._id}}" disabled="{{#unless currentUser}}true{{/unless}}">
+					{{#if up_votes}}{{up_votes}}{{else}}0{{/if}}
+					<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+				</a>
+				<a href="#" class="btn js-downvote {{downvote_btn_class currentUser._id}}" disabled="{{#unless currentUser}}true{{/unless}}">
+					{{#if down_votes}}{{down_votes}}{{else}}0{{/if}}
+					<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+				</a>
+			</p>
+		{{/if}}
+		<div>
+			<a href="/site/{{_id}}" class="">
+				Comments <span class="badge">{{commentCount}}</span>
+			</a>
+		</div>
 	</li>
 </template>
