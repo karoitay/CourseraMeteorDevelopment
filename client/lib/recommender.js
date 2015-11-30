@@ -14,9 +14,6 @@ var getScores = function(userId, userVotedSites) {
 		if (_.contains(site.down, userId)) {
 			upscore = -1;
 			downscore = 1;
-		} else if (!_.contains(site.up, userId)) {
-			console.log("User vote with no up or down");
-			return [];
 		}
 		return _.map(site.up, function(upvote) {
 			return { userId: upvote, score: upscore };
@@ -47,19 +44,18 @@ getRecommendations = function(userId, allSites) {
 	var userVotedSites = _.filter(allSites, function(site) {
 		return _.contains(site.up, userId) || _.contains(site.down, userId);
 	});
-	var userUnvotedSites = _.difference(allSites, userVotedSites);
 	var scores = getScores(userId, userVotedSites);
-	console.log(scores);
-	console.log(userUnvotedSites);
+
+	// We only want to recommend sites that the user did not vote on.
+	var userUnvotedSites = _.difference(allSites, userVotedSites);
+	// Compute the score for each unvoted site.
+	// The furmula is: sum(score of users who upvoted the site) - sum(score of users who downvoted the site)
 	_.each(userUnvotedSites, function(site) {
-		console.log("site " + site._id);
 		var score = 0;
 		_.each(site.up, function(userId) {
 			score += scores[userId] || 0;
-			console.log("up " + userId);
 		});
 		_.each(site.down, function(userId) {
-			console.log("down " + userId);
 			score -= scores[userId] || 0;
 		});
 		site.score = score;
