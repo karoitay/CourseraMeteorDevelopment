@@ -18,6 +18,9 @@ Template.site_comments.events({
 	"click .js-comment-submit-button": function(event) {
 		var comment = $("#commentTextArea").val().trim();
 		$(".js-comment-submit-button").addClass("disabled");
+		if (!comment) {
+			return;
+		}
 		Comments.insert({comment: comment, site_id: this._id}, function(err) {
 			if (err) {
 				alert(err);
