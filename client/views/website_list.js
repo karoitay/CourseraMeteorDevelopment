@@ -33,29 +33,7 @@ Template.website_list.helpers({
 			return allSites;
 		} else {
 			var userId = Meteor.user()._id;
-			var userVotedSites = _.filter(allSites, function(site) {
-				return _.contains(site.up, userId) || _.contains(site.down, userId);
-			});
-			var userUnvotedSites = _.difference(allSites, userVotedSites);
-			var scores = getScores(userId, userVotedSites);
-			console.log(scores);
-			console.log(userUnvotedSites);
-			_.each(userUnvotedSites, function(site) {
-				console.log("site " + site._id);
-				var score = 0;
-				_.each(site.up, function(userId) {
-					score += scores[userId] || 0;
-					console.log("up " + userId);
-				});
-				_.each(site.down, function(userId) {
-					console.log("down " + userId);
-					score -= scores[userId] || 0;
-				});
-				site.score = score;
-			});
-			return _.sortBy(userUnvotedSites, function(site) {
-				return -site.score;
-			});
+			return getRecommendations(userId, allSites);
 		}
 	}
 });
