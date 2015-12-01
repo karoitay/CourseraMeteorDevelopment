@@ -1,5 +1,16 @@
 <template name="website_list">
 	<ol class="list-group">
+		<div>
+			<h4 class="alert-info">
+				{{#if isActivePath '/'}}{{#if searchTerm}}
+					{{#if websites}}
+						Search result for: "{{searchTerm}}"
+					{{else}}
+						"{{searchTerm}}" doesn't match any site.
+					{{/if}}
+				{{/if}}{{/if}}
+			</h4>
+		</div>
 		{{#each websites}}
 			{{>website_item}}
 		{{/each}}

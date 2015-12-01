@@ -27,13 +27,20 @@ var getScores = function(userId, userVotedSites) {
 }
 
 Template.website_list.helpers({
-	websites:function(){
+	websites:function() {
 		var allSites = Websites.find({}, {sort: {up_votes : -1, down_votes: 1, createdOn: -1}}).fetch();
-		if (ActiveRoute.path('/') || !Meteor.user()) {
-			return allSites;
+		if (ActiveRoute.path('/')) {
+			var searchTerm = Session.get("searchTerm");
+			if (searchTerm) {
+				searchTerm = searchTerm.toLowerCase();
+				return _.filter(allSites, function(site) {
+					return site.title.toLowerCase().indexOf(searchTerm) >= 0 || site.description.toLowerCase().indexOf(searchTerm) >= 0;
+				});
+			}
 		} else {
-			var userId = Meteor.user()._id;
-			return getRecommendations(userId, allSites);
+			var userId = Meteor.user() ? Meteor.user()._id : null;
+			allSites = getRecommendations(userId, allSites);
 		}
+		return allSites;
 	}
 });

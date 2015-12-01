@@ -1,13 +1,28 @@
 <template name="website_form">
 	<div class="panel-heading">
-		{{#if currentUser}}
-			<a class="btn btn-default js-toggle-website-form" href="#">
-		  		<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-		  		Add site
-			</a>
-		{{else}}
-			Sites
-		{{/if}}
+		<div class="row">
+			<div class="col-lg-3"> 
+				{{#if currentUser}}
+					<a class="btn btn-default js-toggle-website-form" href="#">
+				  		<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+				  		Add site
+					</a>
+				{{else}}
+					Sites
+				{{/if}}
+			</div>
+			<div class="col-lg-5"></div>
+			<div class="col-lg-4">
+				<form class="js-search-form">
+					<div class="input-group">
+						<input type="text" class="form-control js-search-text" id="searchterm" value="{{searchTerm}}" placeholder="Search">
+						<span class="input-group-btn">
+							<button class="btn btn-primary" type="submit">Go!</button>
+						</span>
+					</div>
+				</form>
+			</div>
+		</div>
 	</div>
 	{{#if currentUser}}
 		<div id="website_form" class="panel-body hidden_div">

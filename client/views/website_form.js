@@ -20,8 +20,6 @@ Template.website_form.events({
 	"click .js-get-metadata-button": function(event) {
 		$("#website_form :input").attr("disabled", true);
 		var form = $("#website_form");
-		console.log(form);
-		console.log(form.find("#url").val().trim());
 		extractMeta(form.find("#url").val(), function(err, res) {
 			$("#website_form :input").attr("disabled", false);
 			if (err) {
@@ -62,6 +60,14 @@ Template.website_form.events({
 			}
 		});
 
+		return false;
+	},
+	"submit .js-search-form": function(event) {
+		var newSearchTerm = event.target.searchterm.value.trim();
+		var oldSearchTerm = Session.get("searchTerm");
+		if (newSearchTerm != oldSearchTerm) {
+			Session.set("searchTerm", newSearchTerm);
+		}
 		return false;
 	}
 });
