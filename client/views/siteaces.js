@@ -1,19 +1,27 @@
 Router.configure({
-	layoutTemplate: 'siteLayout'
+	layoutTemplate: "siteLayout"
 });
 
-Router.route('/', function () {
- 	this.render('mainPage');
+Router.route("/", function () {
+ 	this.render("mainPage");
+ 	this.render("breadcrumbs", {to: "breadcrumbs"});
 });
 
-Router.route('/site/:_id', function () {
-	this.render('siteDetails', {data: Websites.findOne({_id: this.params._id})});
+Router.route("/recommended", function () {
+ 	this.render("mainPage");
+ 	this.render("breadcrumbs", {to: "breadcrumbs"});
 });
 
-Router.route('/recommended', function () {
- 	this.render('mainPage');
+var renderSiteDetails = function(route) {
+	var data = Websites.findOne({_id: route.params._id});
+	route.render("siteDetails", {data: data});
+	route.render("breadcrumbs", {to: "breadcrumbs", data: data});
+};
+
+Router.route("/site/:_id", function () {
+	renderSiteDetails(this);
 });
 
-Router.route('/recommended/site/:_id', function () {
-	this.render('siteDetails', {data: Websites.findOne({_id: this.params._id})});
+Router.route("/recommended/site/:_id", function () {
+	renderSiteDetails(this);
 });

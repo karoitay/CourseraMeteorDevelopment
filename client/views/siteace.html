@@ -7,9 +7,10 @@
 
 <template name="siteLayout">
 	{{> navbar}}
+	{{> yield "breadcrumbs"}}
 	<div class="container">
 		{{> yield}}
-	</div>	
+	</div>
 </template>
 
 <template name="mainPage">

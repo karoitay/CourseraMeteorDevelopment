@@ -1,0 +1,15 @@
+<template name="breadcrumbs">
+	<ol class="breadcrumb">
+		<li><a href="/" class="{{isActivePath '/'}}">Home</a></li>
+		{{#if isActivePath regex='/recommended(/.*)?'}}
+			<li><a href="/recommended" class="{{isActivePath '/recommended'}}">Recommended Sites</a></li>
+			{{#if isActivePath regex='/recommended/site/.*'}}
+				<li><a href="#" class="active">{{title}}</a></li>
+			{{/if}}
+		{{else}}
+			{{#if isActivePath regex='/site/.*'}}
+				<li><a href="#" class="active">{{title}}</a></li>
+			{{/if}}
+		{{/if}}
+	</ol>
+</template>
