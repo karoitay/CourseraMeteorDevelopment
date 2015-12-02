@@ -12,8 +12,8 @@
 	    </div>
 		<div class="collapse navbar-collapse">
 			<ul class="nav navbar-nav">
-				<li class="{{isActivePath '/'}}"><a href="/">All sites</a></li>
-        		<li class="{{isActivePath '/recommended'}}"><a href="/recommended">Recommended sites</a></li>
+				<li class="{{#if isNotActivePath regex='/recommended(/.*)?'}}active{{/if}}"><a href="/">All sites</a></li>
+        		<li class="{{#if isActivePath regex='/recommended(/.*)?'}}active{{/if}}"><a href="/recommended">Recommended sites</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				{{> loginButtons}}

@@ -16,7 +16,7 @@
 			</p>
 		{{/if}}
 		<div>
-			<a href="/site/{{_id}}" class="">
+			<a href="{{#if isActivePath '/recommended'}}/recommended{{/if}}/site/{{_id}}" class="">
 				Comments <span class="badge">{{commentCount}}</span>
 			</a>
 		</div>
