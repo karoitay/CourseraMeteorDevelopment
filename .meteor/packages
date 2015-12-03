@@ -24,3 +24,4 @@ iron:router
 zimme:active-route
 acemtp:meta-extractor
 check
+force-ssl
